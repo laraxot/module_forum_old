@@ -1,0 +1,17 @@
+In this lesson, we will dispatch our job in the store method
+
+Starter Template:
+GitHub Link: https://github.com/AngelJayMedia/forum
+https://laracasts.com/discuss/channels/laravel/dispatchnow-vs-dispatchsync
+https://laravel.com/docs/8.x/queues#synchronous-dispatching
+
+Timestamps:
+0:00 Introduction and setup
+0:24 Update handle method in our CreateThread Class/Job
+4:28 DispatchSync Job in store method
+8:48 Add alerts to the threads index view
+
+https://morioh.com/p/f8771796c28d
+
+-----------------------------------------------------------------------------------------
+
