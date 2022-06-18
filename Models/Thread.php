@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models;
 
-use App\Exceptions\CouldNotMarkReplyAsSolution;
+use Exception;
 //use Spatie\Feed\Feedable;
 //use Spatie\Feed\FeedItem;
 //use Illuminate\Support\Str;
@@ -13,20 +13,21 @@ use App\Exceptions\CouldNotMarkReplyAsSolution;
 
 //use Modules\Forum\Models\Traits\HasSlug;
 
-use Exception;
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-//use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Str;
 use Modules\Forum\Contracts\ReplyAble;
-use Modules\Forum\Contracts\SubscriptionAble;
-// use Modules\Tag\Models\Traits\HasTagTrait;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Tags\HasTags; // spatie tags
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Rating\Models\Traits\HasLikes;
+//use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\Forum\Contracts\SubscriptionAble;
+use Illuminate\Contracts\Pagination\Paginator;
+use App\Exceptions\CouldNotMarkReplyAsSolution;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+// use Modules\Tag\Models\Traits\HasTagTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection as SupportCollection;
 
  /*  Feedable */
 
@@ -36,7 +37,7 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
 {
     use HasFactory;
     use Traits\HasAuthor;
-    use Traits\HasLikes;
+    use HasLikes;
     use Traits\HasSlug;
     use HasTags;
     use Traits\HasTimestamps;
