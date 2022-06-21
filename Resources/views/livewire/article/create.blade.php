@@ -28,7 +28,7 @@
             <div class="space-y-1">
                 <x-forms.label for="title">Title</x-forms.label>
 
-                <x-forms.inputs.input name="title" :value="old('title', $article->title())" required maxlength="100" />
+                <x-forms.input name="title" :value="old('title', $article->title())" required maxlength="100" />
 
                 <span class="mt-2 text-sm text-gray-500">
                     Maximum 100 characters.
@@ -40,8 +40,7 @@
             <div class="space-y-1">
                 <x-forms.label for="body">Body</x-forms.label>
 
-                <livewire:editor :body="$article->body()" />
-
+                {{-- <livewire:editor:body="$article->body()"/> --}}
 
             </div>
         </div>
@@ -51,7 +50,7 @@
                 <div class="space-y-1">
                     <x-forms.label for="original_url">Original URL</x-forms.label>
 
-                    <x-forms.inputs.input name="original_url" :value="old('original_url', $article->originalUrl())" />
+                    <x-forms.input name="original_url" :value="old('original_url', $article->originalUrl())" />
 
                     <span class="mt-2 text-sm text-gray-500">
                         If you have already posted this article on your own site, enter the URL here and the content
