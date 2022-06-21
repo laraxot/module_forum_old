@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 use Modules\Forum\Models\Traits\HasAuthor;
-use Modules\Forum\Models\Traits\HasLikes;
 use Modules\Forum\Models\Traits\HasTimestamps;
+use Modules\Rating\Models\Traits\HasLikes;
 
 final class Reply extends Model {
     use HasFactory;
