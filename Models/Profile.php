@@ -220,7 +220,9 @@ class Profile extends BlogProfile {
     }
 
     public function twitter(): ?string {
-        return $this->twitter;
+        //Undefined property: Modules\Forum\Models\Profile::$twitter
+        //return $this->twitter;
+        return '';
     }
 
     public function hasTwitterAccount(): bool {
