@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile as BlogProfile;
 use Modules\LU\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 /**
  * Modules\Forum\Models\Profile.
@@ -176,31 +178,56 @@ use Modules\LU\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedIp($value)
  */
 class Profile extends BlogProfile {
+
+    // getters
+    protected function username(): Attribute {
+        $user = $this->user;
+        if (null == $user) {
+            //$user1 = User::firstOrCreate(['id' => $this->user_id]);
+            //dddx($user1->username());
+        }
+        return Attribute::make(
+            get: fn ($value) =>  $user->handle,
+        );
+    }
+
+
+    protected function name(): Attribute {
+        $user = $this->user;
+        return Attribute::make(
+            get: fn ($value) => $user->first_name,
+        );
+    }
+
+    protected function bio(): Attribute {
+        $user = $this->user;
+
+        return Attribute::make(
+            get: fn ($value) => $user->txt,
+        );
+    }
+
+    protected function githubUsername(): Attribute {
+        return Attribute::make(
+            get: fn ($value) => $this->github_username ?? '',
+        );
+    }
+    
+    protected function hasTwitterAccount(): Attribute {
+        return Attribute::make(
+            get: fn ($value) => !empty($this->twitter()),
+        );
+    }
+
+    protected function twitter(): Attribute {
+        return Attribute::make(
+            get: fn ($value) => '',
+        );
+    }
+
     //--- relationship ---
     public function forums(): HasMany {
         return $this->hasMany(Forum::class, 'user_id', 'user_id');
-    }
-
-    public function username(): string {
-        $user = $this->user;
-        if (null == $user) {
-            $user1 = User::firstOrCreate(['user_id' => $this->user_id]);
-            dddx($user1->username());
-        }
-
-        return $user->handle;
-    }
-
-    public function name(): ?string {
-        $user = $this->user;
-
-        return $user->first_name;
-    }
-
-    public function bio(): ?string {
-        $user = $this->user;
-
-        return $user->txt;
     }
 
     public function isLoggedInUser(): bool {
@@ -213,20 +240,6 @@ class Profile extends BlogProfile {
 
     public function emailAddress(): string {
         return $this->email;
-    }
-
-    public function githubUsername(): string {
-        return $this->github_username ?? '';
-    }
-
-    public function twitter(): ?string {
-        //Undefined property: Modules\Forum\Models\Profile::$twitter
-        //return $this->twitter;
-        return '';
-    }
-
-    public function hasTwitterAccount(): bool {
-        return ! empty($this->twitter());
     }
 
     public function isBanned(): bool {
