@@ -13,7 +13,7 @@ trait PreparesSearch {
         $chunks = $this->splitToCollection($value, "/\r\n\r\n/")
             ->flatMap(function ($chunk) {
                 // If the chunk is still too long, split it on new line.
-                if (strlen($chunk) > 5000) {
+                if (\strlen($chunk) > 5000) {
                     return $this->splitToCollection($chunk, "/\r\n/")->toArray();
                 }
 
@@ -31,7 +31,7 @@ trait PreparesSearch {
     private function batch(Collection $chunks, int $limit): array {
         return $chunks->reduce(function ($carry, $item) use ($limit) {
             // First iteration, set the item as first array item.s
-            if (is_null($carry)) {
+            if (null === $carry) {
                 return [$item];
             }
 
@@ -40,14 +40,14 @@ trait PreparesSearch {
             }
 
             // Append current item to last element of carry if the combination is < 5000 characters.
-            if (strlen(Arr::last($carry).$item) < $limit) {
-                $carry[count($carry) - 1] .= "\r\n{$item}";
+            if (\strlen(Arr::last($carry).$item) < $limit) {
+                $carry[\count($carry) - 1] .= "\r\n{$item}";
 
                 return $carry;
             }
 
             // Add the current item to the carry.
-            array_push($carry, $item);
+            $carry[] = $item;
 
             return $carry;
         });

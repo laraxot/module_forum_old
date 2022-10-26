@@ -13,7 +13,7 @@ abstract class BaseMorphPivot extends MorphPivot {
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-    //protected $attributes = ['related_type' => 'cuisine_cat'];
+    // protected $attributes = ['related_type' => 'cuisine_cat'];
     protected $dates = [
         'created_at',
         'updated_at',

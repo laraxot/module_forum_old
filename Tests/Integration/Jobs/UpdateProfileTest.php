@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Events\EmailAddressWasChanged;
 use App\Jobs\UpdateProfile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -33,6 +35,6 @@ test('changing the email address emits an event', function () {
     $this->assertDatabaseHas('users', ['id' => $user->id, 'email_verified_at' => null]);
 
     Event::assertDispatched(EmailAddressWasChanged::class, function (EmailAddressWasChanged $event) {
-        return $event->user->email === 'foo@example.com';
+        return 'foo@example.com' === $event->user->email;
     });
 });

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Livewire\LikeReply;
 use App\Http\Livewire\LikeThread;
 use App\Models\Reply;

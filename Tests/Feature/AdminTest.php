@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -330,8 +332,7 @@ test('guests cannot unpin articles', function () {
 });
 
 // Helpers
-function assertCanSeeTheUserOverview()
-{
+function assertCanSeeTheUserOverview() {
     User::factory()->create(['name' => 'Freek Murze']);
     User::factory()->create(['name' => 'Frederick Vanbrabant']);
 
@@ -340,8 +341,7 @@ function assertCanSeeTheUserOverview()
         ->see('Frederick Vanbrabant');
 }
 
-function assertCanBanUsers()
-{
+function assertCanBanUsers() {
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
     test()->put('/admin/users/'.$user->username().'/ban')
@@ -350,8 +350,7 @@ function assertCanBanUsers()
     test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
 }
 
-function assertCanUnbanUsers()
-{
+function assertCanUnbanUsers() {
     $user = User::factory()->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
     test()->put('/admin/users/'.$user->username().'/unban')
@@ -360,18 +359,15 @@ function assertCanUnbanUsers()
     test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
 }
 
-function assertCannotBanAdmins()
-{
+function assertCannotBanAdmins() {
     assertCannotBanUsersByType(User::ADMIN);
 }
 
-function assertCannotBanModerators()
-{
+function assertCannotBanModerators() {
     assertCannotBanUsersByType(User::MODERATOR);
 }
 
-function assertCannotBanUsersByType(int $type)
-{
+function assertCannotBanUsersByType(int $type) {
     $user = User::factory()->create(['type' => $type]);
 
     test()->put('/admin/users/'.$user->username().'/ban')

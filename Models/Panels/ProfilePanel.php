@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models\Panels;
 
-//--- Services --
+// --- Services --
 
 use Modules\Blog\Models\Panels\ProfilePanel as BaseProfilePanel;
 

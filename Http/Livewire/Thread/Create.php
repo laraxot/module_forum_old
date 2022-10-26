@@ -22,7 +22,7 @@ class Create extends Component {
     public function mount(string $model_name) {
         $this->model_name = $model_name;
         $this->form_data = PanelService::make()->get(xotModel($model_name))->getFields();
-        //$this->thread = new Thread();
+        // $this->thread = new Thread();
     }
 
     protected function rules() {
@@ -40,17 +40,17 @@ class Create extends Component {
     }
 
     public function create() {
-        //$this->validate();
-        //dddx(PanelService::make()->get(xotModel($this->model_name)));
-        //PanelService::make()->get(xotModel($this->model_name))->createJob();
+        // $this->validate();
+        // dddx(PanelService::make()->get(xotModel($this->model_name)));
+        // PanelService::make()->get(xotModel($this->model_name))->createJob();
 
         $this->form_data['author_id'] = Auth::id();
 
-        //dddx($this->form_data);
+        // dddx($this->form_data);
 
         $r = dispatch(new StoreJob($this->form_data, PanelService::make()->get(xotModel($this->model_name))));
 
-        //dddx($r);
+        // dddx($r);
 
         return redirect()->route('containers.index', ['container0' => 'threads']);
     }

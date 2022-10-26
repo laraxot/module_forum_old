@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Events\ReplyWasCreated;
 use App\Jobs\CreateReply;
 use App\Models\Thread;

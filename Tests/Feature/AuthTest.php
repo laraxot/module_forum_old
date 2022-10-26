@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -184,12 +186,10 @@ test('unverified users cannot create threads', function () {
 });
 
 // Helpers
-function assertLoggedIn(): void
-{
+function assertLoggedIn(): void {
     expect(Auth::check())->toBeTrue();
 }
 
-function assertLoggedOut(): void
-{
+function assertLoggedOut(): void {
     expect(Auth::check())->toBeFalse();
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Models\Subscription;
 use App\Models\Thread;

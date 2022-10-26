@@ -6,12 +6,12 @@ namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-//----- traits ----
-//------services---------
+// ----- traits ----
+// ------services---------
 
-//--- models ---
+// --- models ---
 
-//--- bases ---
+// --- bases ---
 
 /**
  * Modules\Forum\Models\Forum.
@@ -54,6 +54,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Forum withRating()
+ *
  * @mixin \Eloquent
  */
 class Forum extends BaseModelLang {
@@ -61,13 +62,13 @@ class Forum extends BaseModelLang {
 
     /* https://itnext.io/7-things-you-need-to-know-to-get-the-most-out-of-your-laravel-model-4f915acbb47c */
 
-    //--------- relationship ---------------
+    // --------- relationship ---------------
     public function sons(): HasMany {
-        return $this->hasMany(Forum::class, 'parent_id', 'post_id');
+        return $this->hasMany(self::class, 'parent_id', 'post_id');
     }
 
     public function forums(): HasMany {
-        return $this->hasMany(Forum::class, 'parent_id', 'post_id');
+        return $this->hasMany(self::class, 'parent_id', 'post_id');
     }
 
     public function replies(): HasMany {
@@ -78,9 +79,9 @@ class Forum extends BaseModelLang {
         return $this->hasMany(ForumReply::class);
     }
 
-    //---------- mututars -----------
+    // ---------- mututars -----------
     public function getParentIdAttribute(?int $value): int {
-        if (null != $value) {
+        if (null !== $value) {
             return $value;
         }
         $value = 0;
@@ -89,4 +90,4 @@ class Forum extends BaseModelLang {
 
         return $value;
     }
-}//end model
+}// end model

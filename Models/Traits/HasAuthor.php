@@ -9,7 +9,7 @@ use Modules\LU\Models\User;
 
 trait HasAuthor {
     public function author(): User {
-        //return $this->authorRelation;
+        // return $this->authorRelation;
         return User::first();
     }
 

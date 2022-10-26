@@ -4,51 +4,49 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models;
 
+use App\Exceptions\CouldNotMarkReplyAsSolution;
+// use Spatie\Feed\Feedable;
+// use Spatie\Feed\FeedItem;
+// use Illuminate\Support\Str;
+// use Illuminate\Support\Carbon;
+// use Illuminate\Support\Facades\DB;
+
+// use Modules\Forum\Models\Traits\HasSlug;
+
 use Exception;
-//use Spatie\Feed\Feedable;
-//use Spatie\Feed\FeedItem;
-//use Illuminate\Support\Str;
-//use Illuminate\Support\Carbon;
-//use Illuminate\Support\Facades\DB;
-
-//use Modules\Forum\Models\Traits\HasSlug;
-
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder; // spatie tags
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Str;
 use Modules\Forum\Contracts\ReplyAble;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Tags\HasTags; // spatie tags
-use Illuminate\Database\Eloquent\Builder;
-use Modules\Rating\Models\Traits\HasLikes;
-//use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Collection;
 use Modules\Forum\Contracts\SubscriptionAble;
-use Illuminate\Contracts\Pagination\Paginator;
-use App\Exceptions\CouldNotMarkReplyAsSolution;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 // use Modules\Tag\Models\Traits\HasTagTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Collection as SupportCollection;
+use Modules\Rating\Models\Traits\HasLikes;
+use Spatie\Tags\HasTags;
 
- /*  Feedable */
+/*  Feedable */
 
- //Class Modules\Forum\Models\Thread contains 1 abstract method and must
- // therefore be declared abstract or implement the remaining methods (Modules\Forum\Contracts\ReplyAble::subject)
-final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
-{
+// Class Modules\Forum\Models\Thread contains 1 abstract method and must
+// therefore be declared abstract or implement the remaining methods (Modules\Forum\Contracts\ReplyAble::subject)
+final class Thread extends BaseModel { /* implements ReplyAble, SubscriptionAble */
     use HasFactory;
-    use Traits\HasAuthor;
     use HasLikes;
-    use Traits\HasSlug;
     use HasTags;
+    use Traits\HasAuthor;
+    use Traits\HasSlug;
     use Traits\HasTimestamps;
     use Traits\PreparesSearch;
     use Traits\ProvidesSubscriptions;
     use Traits\ReceivesReplies;
-    //use Traits\Searchable;
+    // use Traits\Searchable;
 
-    //public const TABLE = 'threads';
+    // public const TABLE = 'threads';
 
-    //public const FEED_PAGE_SIZE = 20;
+    // public const FEED_PAGE_SIZE = 20;
 
     /*
      * {@inheritdoc}
@@ -80,43 +78,36 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         return $this->id;
     }
     */
-    //*
-    public function subject(): string
-    {
+    // *
+    public function subject(): string {
         return $this->subject;
     }
 
-    //*/
-    //*
-    public function body(): string
-    {
+    // */
+    // *
+    public function body(): string {
         return $this->body;
     }
 
-    //*/
+    // */
 
-    public function excerpt(int $limit = 100): string
-    {
+    public function excerpt(int $limit = 100): string {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function solutionReply(): ?Reply
-    {
+    public function solutionReply(): ?Reply {
         return $this->solutionReplyRelation;
     }
 
-    public function solutionReplyRelation(): BelongsTo
-    {
+    public function solutionReplyRelation(): BelongsTo {
         return $this->belongsTo(Reply::class, 'solution_reply_id');
     }
 
-    public function isSolved(): bool
-    {
-        return ! is_null($this->solution_reply_id);
+    public function isSolved(): bool {
+        return null !== $this->solution_reply_id;
     }
 
-    public function isSolutionReply(Reply $reply): bool
-    {
+    public function isSolutionReply(Reply $reply): bool {
         if ($solution = $this->solutionReply()) {
             return $solution->is($reply);
         }
@@ -124,8 +115,7 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         return false;
     }
 
-    public function markSolution(Reply $reply, User $user)
-    {
+    public function markSolution(Reply $reply, User $user) {
         $thread = $reply->replyAble();
 
         if (! $thread instanceof self) {
@@ -137,25 +127,21 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         $this->save();
     }
 
-    public function unmarkSolution()
-    {
+    public function unmarkSolution() {
         $this->resolvedByRelation()->dissociate();
         $this->solutionReplyRelation()->dissociate();
         $this->save();
     }
 
-    public function resolvedBy(): ?User
-    {
+    public function resolvedBy(): ?User {
         return $this->resolvedByRelation;
     }
 
-    public function resolvedByRelation(): BelongsTo
-    {
+    public function resolvedByRelation(): BelongsTo {
         return $this->belongsTo(User::class, 'resolved_by');
     }
 
-    public function wasResolvedBy(User $user): bool
-    {
+    public function wasResolvedBy(User $user): bool {
         if ($resolvedBy = $this->resolvedBy()) {
             return $resolvedBy->is($user);
         }
@@ -163,16 +149,14 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         return false;
     }
 
-    public function delete()
-    {
+    public function delete() {
         $this->removeTags();
         $this->deleteReplies();
 
         parent::delete();
     }
 
-    public function toFeedItem(): FeedItem
-    {
+    public function toFeedItem(): FeedItem {
         $updatedAt = Carbon::parse($this->latest_creation);
 
         return FeedItem::create()
@@ -187,31 +171,27 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
     /**
      * @return \Modules\Forum\Models\Thread[]
      */
-    public static function feed(int $limit = 20): Collection
-    {
+    public static function feed(int $limit = 20): Collection {
         return static::feedQuery()->limit($limit)->get();
     }
 
     /**
      * @return \Modules\Forum\Models\Thread[]
      */
-    public static function feedPaginated(int $perPage = 20): Paginator
-    {
+    public static function feedPaginated(int $perPage = 20): Paginator {
         return static::feedQuery()->paginate($perPage);
     }
 
     /**
      * @return \Modules\Forum\Models\Thread[]
      */
-    public static function feedByTagPaginated(Tag $tag, int $perPage = 20): Paginator
-    {
+    public static function feedByTagPaginated(Tag $tag, int $perPage = 20): Paginator {
         return static::feedByTagQuery($tag)
             ->paginate($perPage);
     }
 
-    public static function feedByTagQuery(Tag $tag): Builder
-    {
-        //$pivot_table = 'taggables';
+    public static function feedByTagQuery(Tag $tag): Builder {
+        // $pivot_table = 'taggables';
         $pivot_table = 'tag_morph';
 
         return static::feedQuery()
@@ -225,8 +205,7 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
     /**
      * This will order the threads by creation date and latest reply.
      */
-    public static function feedQuery(): Builder
-    {
+    public static function feedQuery(): Builder {
         return static::with([
             'solutionReplyRelation',
             'likesRelation',
@@ -252,8 +231,7 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
     /**
      * This will calculate the average resolution time in days of all threads marked as resolved.
      */
-    public static function resolutionTime()
-    {
+    public static function resolutionTime() {
         try {
             return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
@@ -264,20 +242,17 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         }
     }
 
-    public static function getFeedItems(): SupportCollection
-    {
+    public static function getFeedItems(): SupportCollection {
         return static::feedQuery()
             ->paginate(static::FEED_PAGE_SIZE)
             ->getCollection();
     }
 
-    public function replyAbleSubject(): string
-    {
+    public function replyAbleSubject(): string {
         return $this->subject();
     }
 
-    public function toSearchableArray(): array
-    {
+    public function toSearchableArray(): array {
         return [
             'id' => $this->id(),
             'subject' => $this->subject(),
@@ -286,23 +261,19 @@ final class Thread extends BaseModel /*implements ReplyAble, SubscriptionAble */
         ];
     }
 
-    public function splitBody($value)
-    {
+    public function splitBody($value) {
         return $this->split($value);
     }
 
-    public function scopeResolved(Builder $query): Builder
-    {
+    public function scopeResolved(Builder $query): Builder {
         return $query->whereNotNull('solution_reply_id');
     }
 
-    public function scopeUnresolved(Builder $query): Builder
-    {
+    public function scopeUnresolved(Builder $query): Builder {
         return $query->whereNull('solution_reply_id');
     }
 
-    public function scopeActive(Builder $query): Builder
-    {
+    public function scopeActive(Builder $query): Builder {
         return $query->has('repliesRelation');
     }
 }

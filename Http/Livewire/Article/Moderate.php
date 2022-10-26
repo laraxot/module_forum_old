@@ -12,8 +12,8 @@ use Modules\Blog\Models\Article;
  * Undocumented class.
  */
 class Moderate extends Component {
-    //public array $form_data = [];
-    //public Collection $articles;
+    // public array $form_data = [];
+    // public Collection $articles;
 
     protected $listeners = ['updateField' => 'updateField'];
 
@@ -23,10 +23,10 @@ class Moderate extends Component {
 
     public function render() {
         $view = 'forum::livewire.article.moderate';
-        //$this->articles = Article::all();
+        // $this->articles = Article::all();
         $view_params = [
             'view' => $view,
-            //'articles' => Article::all(),
+            // 'articles' => Article::all(),
         ];
 
         return view()->make($view, $view_params);

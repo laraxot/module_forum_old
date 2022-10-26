@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;

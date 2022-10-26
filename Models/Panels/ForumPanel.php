@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models\Panels;
 
-//--- Services --
+// --- Services --
 
 use Modules\Xot\Models\Panels\XotBasePanel;
 

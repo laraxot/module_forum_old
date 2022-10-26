@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\UnbanUser;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

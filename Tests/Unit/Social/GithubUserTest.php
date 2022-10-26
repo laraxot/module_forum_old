@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Social\GithubUser;
 use Carbon\Carbon;
 

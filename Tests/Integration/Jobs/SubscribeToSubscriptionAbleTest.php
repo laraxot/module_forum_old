@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\SubscribeToSubscriptionAble;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;

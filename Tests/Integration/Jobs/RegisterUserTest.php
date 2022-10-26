@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Exceptions\CannotCreateUser;
 use App\Jobs\RegisterUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

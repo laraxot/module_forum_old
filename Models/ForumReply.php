@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models;
 
-//----- traits ----
-//------services---------
+// ----- traits ----
+// ------services---------
 
-//--- models ---
+// --- models ---
 
-//--- bases ---
+// --- bases ---
 
 /**
  * Modules\Forum\Models\ForumReply.
@@ -46,6 +46,7 @@ namespace Modules\Forum\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply withRating()
+ *
  * @mixin \Eloquent
  *
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Blog\Models\Favorite[] $favorites
@@ -73,5 +74,5 @@ class ForumReply extends BaseModelLang {
 
     /* https://itnext.io/7-things-you-need-to-know-to-get-the-most-out-of-your-laravel-model-4f915acbb47c */
 
-    //--------- relationship ---------------
-}//end model
+    // --------- relationship ---------------
+}// end model

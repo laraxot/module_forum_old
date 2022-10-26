@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Http\Livewire\NotificationCount;
@@ -12,13 +14,10 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 
-class NotificationsTest extends BrowserKitTestCase
-{
+class NotificationsTest extends BrowserKitTestCase {
     use DatabaseMigrations;
 
-    /** @test */
-    public function users_can_see_notifications()
-    {
+    public function testUsersCanSeeNotifications() {
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
@@ -46,9 +45,7 @@ class NotificationsTest extends BrowserKitTestCase
             ));
     }
 
-    /** @test */
-    public function users_can_mark_notifications_as_read()
-    {
+    public function testUsersCanMarkNotificationsAsRead() {
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
@@ -81,16 +78,12 @@ class NotificationsTest extends BrowserKitTestCase
             ->assertEmitted('NotificationMarkedAsRead');
     }
 
-    /** @test */
-    public function a_non_logged_in_user_cannot_access_notifications()
-    {
+    public function testANonLoggedInUserCannotAccessNotifications() {
         Livewire::test(Notifications::class)
             ->assertForbidden();
     }
 
-    /** @test */
-    public function a_user_cannot_mark_other_users_notifications_as_read()
-    {
+    public function testAUserCannotMarkOtherUsersNotificationsAsRead() {
         $userOne = $this->createUser();
         $userTwo = $this->createUser([
             'name' => 'Jane Doe',
@@ -123,9 +116,7 @@ class NotificationsTest extends BrowserKitTestCase
             ->assertForbidden();
     }
 
-    /** @test */
-    public function a_user_sees_the_correct_number_of_notifications()
-    {
+    public function testAUserSeesTheCorrectNumberOfNotifications() {
         $userOne = $this->createUser();
         $userTwo = $this->createUser([
             'name' => 'Jane Doe',
@@ -139,7 +130,7 @@ class NotificationsTest extends BrowserKitTestCase
             'replyable_id' => $thread->id(),
         ]);
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $userOne->notifications()->create([
                 'id' => Str::random(),
                 'type' => NewReplyNotification::class,

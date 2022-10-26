@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Console\Commands\PostArticleToTwitter;
 use App\Models\Article;
 use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;

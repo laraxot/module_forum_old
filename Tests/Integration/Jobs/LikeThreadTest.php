@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Exceptions\CannotLikeItem;
 use App\Jobs\LikeThread;
 use App\Models\Thread;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Providers;
 
-//---- bases --
+// ---- bases --
 use Modules\Xot\Providers\XotBaseServiceProvider;
 
 class ForumServiceProvider extends XotBaseServiceProvider {
@@ -12,5 +12,5 @@ class ForumServiceProvider extends XotBaseServiceProvider {
 
     protected string $module_ns = __NAMESPACE__;
 
-    public string $module_name = 'forum'; //lower del nome
+    public string $module_name = 'forum'; // lower del nome
 }

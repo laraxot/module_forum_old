@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -57,8 +59,7 @@ it('only returns approved articles for a user', function () {
 });
 
 // Helpers
-function createTwoSolutionReplies(User $user)
-{
+function createTwoSolutionReplies(User $user) {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id(), 'author_id' => $user->id()]);
     $thread->markSolution($reply, $user);

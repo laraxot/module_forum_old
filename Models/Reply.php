@@ -15,8 +15,8 @@ use Modules\Forum\Models\Traits\HasTimestamps;
 use Modules\Rating\Models\Traits\HasLikes;
 
 final class Reply extends Model {
-    use HasFactory;
     use HasAuthor;
+    use HasFactory;
     use HasLikes;
     use HasTimestamps;
 

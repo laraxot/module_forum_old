@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Rules\HttpImageRule;
 
 it('passes when no http links are detected', function () {

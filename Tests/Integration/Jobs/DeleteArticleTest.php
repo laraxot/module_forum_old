@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\DeleteArticle;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

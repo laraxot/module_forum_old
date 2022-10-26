@@ -17,7 +17,7 @@ test('we can delete a thread and its replies', function () {
     Like::factory()->thread()->create(['likeable_id' => $thread->id()]);
     Like::factory()->reply()->create(['likeable_id' => $reply->id()]);
 
-    //$this->dispatch(new DeleteThread($thread));
+    // $this->dispatch(new DeleteThread($thread));
 
     $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
     $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\CreateReply;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -136,29 +138,25 @@ it('generates a slug when invalid url characters provided', function () {
 });
 
 // Helpers
-function createThreadFromToday(): Thread
-{
+function createThreadFromToday(): Thread {
     $today = Carbon::now();
 
     return Thread::factory()->create(['created_at' => $today, 'last_activity_at' => $today]);
 }
 
-function createThreadFromYesterday(): Thread
-{
+function createThreadFromYesterday(): Thread {
     $yesterday = Carbon::yesterday();
 
     return Thread::factory()->create(['created_at' => $yesterday, 'last_activity_at' => $yesterday]);
 }
 
-function createThreadFromTwoDaysAgo(): Thread
-{
+function createThreadFromTwoDaysAgo(): Thread {
     $twoDaysAgo = Carbon::now()->subDay(2);
 
     return Thread::factory()->create(['created_at' => $twoDaysAgo, 'last_activity_at' => $twoDaysAgo]);
 }
 
-function createResolvedThread()
-{
+function createResolvedThread() {
     $thread = createThreadFromToday();
     $reply = Reply::factory()->create();
     $user = User::factory()->create();
@@ -167,8 +165,7 @@ function createResolvedThread()
     return $thread;
 }
 
-function createActiveThread()
-{
+function createActiveThread() {
     $thread = createThreadFromToday();
     $reply = Reply::factory()->create();
     $reply->to($thread);

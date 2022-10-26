@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Forum\Models\Panels;
 
 use Illuminate\Http\Request;
-//--- Services --
+// --- Services --
 
 use Modules\Xot\Models\Panels\Actions\ArtisanAction;
 use Modules\Xot\Models\Panels\XotBasePanel;
@@ -74,7 +74,7 @@ class HomePanel extends XotBasePanel {
      * @return RowsContract
      */
     public static function indexQuery(array $data, $query) {
-        //return $query->where('user_id', $request->user()->user_id);
+        // return $query->where('user_id', $request->user()->user_id);
         return $query;
     }
 

@@ -7,13 +7,13 @@ namespace Modules\Forum\Models\Traits;
 use Illuminate\Support\Str;
 
 trait HasSlug {
-    //Undefined property: Modules\Forum\Models\Thread::$slug
-    //*
+    // Undefined property: Modules\Forum\Models\Thread::$slug
+    // *
     public function slug(): string {
         return $this->slug;
     }
 
-    //*/
+    // */
 
     public function setSlugAttribute(string $slug) {
         $this->attributes['slug'] = $this->generateUniqueSlug($slug);

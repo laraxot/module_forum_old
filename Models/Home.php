@@ -16,7 +16,7 @@ class Home extends BaseModelLang {
         ],
     ];
 
-    //--------- functions -------------
+    // --------- functions -------------
     public function forums() {
         return Forum::all();
     }

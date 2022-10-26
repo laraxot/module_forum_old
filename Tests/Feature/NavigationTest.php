@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Livewire\NotificationIndicator;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -31,7 +33,7 @@ test('a user sees the correct number of notifications', function () {
     Livewire::test(NotificationIndicator::class)
         ->assertSee('hidden');
 
-    for ($i = 0; $i < 10; $i++) {
+    for ($i = 0; $i < 10; ++$i) {
         $userOne->notifications()->create([
             'id' => Str::random(),
             'type' => NewReplyNotification::class,

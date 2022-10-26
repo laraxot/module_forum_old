@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models\Traits;
 
-use Modules\Forum\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Forum\Models\Reply;
 
 trait ReceivesReplies {
     /**

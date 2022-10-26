@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use App\Queries\SearchUsers;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

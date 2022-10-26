@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\UnlikeThread;
 use App\Models\Thread;
 use App\Models\User;

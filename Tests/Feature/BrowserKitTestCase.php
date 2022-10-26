@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\WithFaker;
@@ -8,16 +10,14 @@ use Tests\CreatesApplication;
 use Tests\CreatesUsers;
 use Tests\HttpAssertions;
 
-class BrowserKitTestCase extends BaseTestCase
-{
+class BrowserKitTestCase extends BaseTestCase {
     use CreatesApplication;
     use CreatesUsers;
     use HttpAssertions;
 
     public $baseUrl = 'http://localhost';
 
-    protected function setUpTraits()
-    {
+    protected function setUpTraits() {
         $uses = parent::setUpTraits();
 
         if (isset($uses[WithFaker::class])) {
@@ -27,8 +27,7 @@ class BrowserKitTestCase extends BaseTestCase
         return $uses;
     }
 
-    protected function dispatch($job)
-    {
+    protected function dispatch($job) {
         return $job->handle();
     }
 }

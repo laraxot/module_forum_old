@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Jobs\UnlikeReply;
 use App\Models\Reply;
 use App\Models\User;

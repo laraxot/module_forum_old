@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Providers;
 
-//--- bases ---
+// --- bases ---
 use Modules\Xot\Providers\XotBaseRouteServiceProvider;
 
 class RouteServiceProvider extends XotBaseRouteServiceProvider {
@@ -16,4 +16,4 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider {
     protected string $module_dir = __DIR__;
 
     protected string $module_ns = __NAMESPACE__;
-}//end class RouteServiceProvider
+}// end class RouteServiceProvider

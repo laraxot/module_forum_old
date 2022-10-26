@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
@@ -130,7 +132,6 @@ test('twitter is optional', function () {
 });
 
 // Helpers
-function assertPasswordWasHashedAndSaved(): void
-{
+function assertPasswordWasHashedAndSaved(): void {
     expect(Hash::check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()))->toBeTrue();
 }

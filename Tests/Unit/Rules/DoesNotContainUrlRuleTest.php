@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Rules\DoesNotContainUrlRule;
 
 it('detects a url in a string', function () {
