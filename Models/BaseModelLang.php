@@ -12,6 +12,12 @@ use Modules\Lang\Models\Traits\LinkedTrait;
 use Modules\Xot\Traits\Updater;
 
 abstract class BaseModelLang extends Model {
+<<<<<<< HEAD
+=======
+    use Updater;
+    // use Searchable;
+    use LinkedTrait;
+>>>>>>> 49c2ef3 (up)
     use HasFactory;
     // use Searchable;
     use LinkedTrait;

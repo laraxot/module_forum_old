@@ -181,7 +181,11 @@ class Profile extends BlogProfile {
     // getters
     protected function username(): Attribute {
         $user = $this->user;
+<<<<<<< HEAD
         if (null === $user) {
+=======
+        if (null == $user) {
+>>>>>>> 49c2ef3 (up)
             // $user1 = User::firstOrCreate(['id' => $this->user_id]);
             // dddx($user1->username());
         }

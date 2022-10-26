@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Traits\Updater;
 
 abstract class BaseModel extends Model {
+<<<<<<< HEAD
+=======
+    use Updater;
+>>>>>>> 49c2ef3 (up)
     // use Searchable;
     use HasFactory;
     use Updater;

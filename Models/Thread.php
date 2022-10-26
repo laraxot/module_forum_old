@@ -104,7 +104,11 @@ final class Thread extends BaseModel { /* implements ReplyAble, SubscriptionAble
     }
 
     public function isSolved(): bool {
+<<<<<<< HEAD
         return null !== $this->solution_reply_id;
+=======
+        return ! is_null($this->solution_reply_id);
+>>>>>>> 49c2ef3 (up)
     }
 
     public function isSolutionReply(Reply $reply): bool {
