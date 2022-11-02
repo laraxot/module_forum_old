@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Forum\Models;
 
-// ----- traits ----
-// ------services---------
+//----- traits ----
+//------services---------
 
-// --- models ---
+//--- models ---
 
-// --- bases ---
-use Illuminate\Database\Eloquent\Casts\Attribute;
+//--- bases ---
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile as BlogProfile;
 use Modules\LU\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 /**
  * Modules\Forum\Models\Profile.
@@ -104,67 +105,66 @@ use Modules\LU\Models\User;
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Xot\Models\Widget[]    $widgets
  * @property int|null                                                                 $widgets_count
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang ofItem(string $guid)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       ofLayoutPosition($layout_position)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       query()
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel1Short($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel2Short($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAdministrativeAreaLevel3Short($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereAuthUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereBio($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCampground($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCampgroundShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCountryShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereDeliveryCost($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereDeliveryOptions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereFirstname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereFormattedAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereGoogleplaceUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereGoogleplaceUrlShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereLatitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereLocality($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereLocalityShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereLongitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereMinOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereOrderAction($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePointOfInterest($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePointOfInterestShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePolitical($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePoliticalShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePostType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePostalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePostalCodeShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePostalTown($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePostalTownShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePremise($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePremiseShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePriceCurrency($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       wherePriceRange($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereRoute($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereRouteShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereStreetNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereStreetNumberShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereSurname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       whereWebsite($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Profile       withDistance(float $lat, float $lng)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile ofLayoutPosition($layout_position)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel1Short($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel2Short($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAdministrativeAreaLevel3Short($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAuthUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereBio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCampground($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCampgroundShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCountryShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereDeliveryCost($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereDeliveryOptions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereFirstname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereFormattedAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereGoogleplaceUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereGoogleplaceUrlShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereLocality($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereLocalityShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereMinOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereOrderAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePointOfInterest($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePointOfInterestShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePolitical($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePoliticalShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePostType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePostalCodeShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePostalTown($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePostalTownShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePremise($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePremiseShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePriceCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePriceRange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereRoute($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereRouteShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereStreetNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereStreetNumberShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereSurname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereWebsite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile withDistance(float $lat, float $lng)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang withPost(string $guid)
- *
  * @mixin \Eloquent
  *
  * @property string|null $deleted_ip
@@ -178,26 +178,22 @@ use Modules\LU\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedIp($value)
  */
 class Profile extends BlogProfile {
+
     // getters
     protected function username(): Attribute {
         $user = $this->user;
-<<<<<<< HEAD
-        if (null === $user) {
-=======
         if (null == $user) {
->>>>>>> 49c2ef3 (up)
-            // $user1 = User::firstOrCreate(['id' => $this->user_id]);
-            // dddx($user1->username());
+            //$user1 = User::firstOrCreate(['id' => $this->user_id]);
+            //dddx($user1->username());
         }
-
         return Attribute::make(
-            get: fn ($value) => $user->handle,
+            get: fn ($value) =>  $user->handle,
         );
     }
 
+
     protected function name(): Attribute {
         $user = $this->user;
-
         return Attribute::make(
             get: fn ($value) => $user->first_name,
         );
@@ -216,10 +212,10 @@ class Profile extends BlogProfile {
             get: fn ($value) => $this->github_username ?? '',
         );
     }
-
+    
     protected function hasTwitterAccount(): Attribute {
         return Attribute::make(
-            get: fn ($value) => ! empty($this->twitter()),
+            get: fn ($value) => !empty($this->twitter()),
         );
     }
 
@@ -229,7 +225,7 @@ class Profile extends BlogProfile {
         );
     }
 
-    // --- relationship ---
+    //--- relationship ---
     public function forums(): HasMany {
         return $this->hasMany(Forum::class, 'user_id', 'user_id');
     }
@@ -247,7 +243,7 @@ class Profile extends BlogProfile {
     }
 
     public function isBanned(): bool {
-        return null !== $this->banned_at;
+        return ! is_null($this->banned_at);
     }
 
     public function type(): int {

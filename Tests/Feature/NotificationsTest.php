@@ -17,12 +17,7 @@ use Livewire\Livewire;
 class NotificationsTest extends BrowserKitTestCase {
     use DatabaseMigrations;
 
-<<<<<<< HEAD
     public function testUsersCanSeeNotifications() {
-=======
-    /** @test */
-    public function usersCanSeeNotifications() {
->>>>>>> 49c2ef3 (up)
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
@@ -50,12 +45,8 @@ class NotificationsTest extends BrowserKitTestCase {
             ));
     }
 
-<<<<<<< HEAD
-    public function testUsersCanMarkNotificationsAsRead() {
-=======
     /** @test */
     public function usersCanMarkNotificationsAsRead() {
->>>>>>> 49c2ef3 (up)
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
@@ -88,22 +79,14 @@ class NotificationsTest extends BrowserKitTestCase {
             ->assertEmitted('NotificationMarkedAsRead');
     }
 
-<<<<<<< HEAD
-    public function testANonLoggedInUserCannotAccessNotifications() {
-=======
     /** @test */
     public function aNonLoggedInUserCannotAccessNotifications() {
->>>>>>> 49c2ef3 (up)
         Livewire::test(Notifications::class)
             ->assertForbidden();
     }
 
-<<<<<<< HEAD
-    public function testAUserCannotMarkOtherUsersNotificationsAsRead() {
-=======
     /** @test */
     public function aUserCannotMarkOtherUsersNotificationsAsRead() {
->>>>>>> 49c2ef3 (up)
         $userOne = $this->createUser();
         $userTwo = $this->createUser([
             'name' => 'Jane Doe',
@@ -136,12 +119,8 @@ class NotificationsTest extends BrowserKitTestCase {
             ->assertForbidden();
     }
 
-<<<<<<< HEAD
-    public function testAUserSeesTheCorrectNumberOfNotifications() {
-=======
     /** @test */
     public function aUserSeesTheCorrectNumberOfNotifications() {
->>>>>>> 49c2ef3 (up)
         $userOne = $this->createUser();
         $userTwo = $this->createUser([
             'name' => 'Jane Doe',
