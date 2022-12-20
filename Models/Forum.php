@@ -39,7 +39,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int|null                                                                    $replies_count
  * @property \Illuminate\Database\Eloquent\Collection|Forum[]                            $sons
  * @property int|null                                                                    $sons_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Forum newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Forum newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Forum query()
@@ -54,8 +53,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Forum whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Forum withRating()
- *
  * @mixin \Eloquent
+ * @property string|null $guid
+ * @property string|null $image_src
+ * @property-read string|null $lang
+ * @property-read string|null $post_type
+ * @property string|null $subtitle
+ * @property string|null $title
+ * @property string|null $txt
+ * @property-read string|null $user_handle
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Xot\Models\Image[] $images
+ * @property-read int|null $images_count
+ * @property-read \Modules\Lang\Models\Post|null $post
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Lang\Models\Post[] $posts
+ * @property-read int|null $posts_count
+ * @property-write mixed $url
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang ofItem(string $guid)
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang withPost(string $guid)
  */
 class Forum extends BaseModelLang {
     protected $fillable = ['post_id', 'parent_id', 'user_id'];

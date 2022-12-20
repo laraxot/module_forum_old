@@ -30,7 +30,6 @@ namespace Modules\Forum\Models;
  * @property int                                                                      $ratings_count
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Rating\Models\Rating[] $ratingObjectives
  * @property int|null                                                                 $rating_objectives_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply query()
@@ -46,9 +45,7 @@ namespace Modules\Forum\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ForumReply withRating()
- *
  * @mixin \Eloquent
- *
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Blog\Models\Favorite[] $favorites
  * @property int|null                                                                 $favorites_count
  * @property string|null                                                              $guid
@@ -65,9 +62,10 @@ namespace Modules\Forum\Models;
  * @property int|null                                                                 $my_favorites_count
  * @property \Modules\Lang\Models\Post|null                                           $post
  * @property mixed                                                                    $url
- *
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang ofItem(string $guid)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModelLang withPost(string $guid)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Lang\Models\Post[] $posts
+ * @property-read int|null $posts_count
  */
 class ForumReply extends BaseModelLang {
     protected $fillable = ['id', 'forum_post_id', 'user_id'];

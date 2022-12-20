@@ -6,7 +6,7 @@ namespace Modules\Forum\Models\Panels;
 
 // --- Services --
 
-use Modules\Xot\Models\Panels\XotBasePanel;
+use Modules\Cms\Models\Panels\XotBasePanel;
 
 class ForumReplyPanel extends XotBasePanel {
     /**

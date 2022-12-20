@@ -9,7 +9,7 @@ use Livewire\Component;
 use Modules\Forum\Models\Thread;
 use Modules\Xot\Jobs\PanelCrud\CreateJob;
 use Modules\Xot\Jobs\PanelCrud\StoreJob;
-use Modules\Xot\Services\PanelService;
+use Modules\Cms\Services\PanelService;
 
 /**
  * Class Create.

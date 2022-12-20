@@ -13,7 +13,7 @@ use Modules\Blog\Models\Article;
  */
 class Moderate extends Component {
     // public array $form_data = [];
-    // public Collection $articles;
+    public Collection $articles;
 
     protected $listeners = ['updateField' => 'updateField'];
 
