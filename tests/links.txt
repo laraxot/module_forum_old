@@ -1,0 +1,7 @@
+https://vegibit.com/using-test-authentication-to-allow-logged-in-users-to-post-replies/
+https://vegibit.com/how-to-filter-models-by-another-model/
+
+
+https://confidentlaravel.com/ !!!
+
+https://laravelshift.com/laravel-test-generator !!!
