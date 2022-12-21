@@ -7,7 +7,7 @@ namespace Modules\Forum\Models\Panels;
 use Illuminate\Http\Request;
 // --- Services --
 
-use Modules\Xot\Models\Panels\Actions\ArtisanAction;
+use Modules\Cms\Models\Panels\Actions\ArtisanAction;
 use Modules\Cms\Models\Panels\XotBasePanel;
 
 class HomePanel extends XotBasePanel {
